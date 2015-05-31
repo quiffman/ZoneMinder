@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y \
 	apache2 php5 php5-mysql apache2-mpm-prefork libapache2-mod-php5 php5-cli openssh-server \
 	mysql-server libvlc-dev libvlc5 libvlccore-dev libvlccore5 vlc-data vlc libcurl4-openssl-dev \
 	libavformat-dev libswscale-dev libavutil-dev libv4l-dev libtool libnetpbm10-dev libavdevice-dev \
-	libmime-lite-perl dh-autoreconf dpatch
+	libmime-lite-perl dh-autoreconf dpatch \
+	libavcodec-dev libavfilter-dev libpostproc-dev
 
 # Copy local code into our container
 ADD . /ZoneMinder
