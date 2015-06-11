@@ -43,17 +43,10 @@ ADD utils/docker/start.sh /tmp/start.sh
 # TODO - Files ADD'ed have 755 already...why do we need this?
 RUN chmod 755 /tmp/start.sh
 
-# Creating SSH privledge escalation dir
-RUN mkdir /var/run/sshd
-
 # Adding apache virtual hosts file
 ADD utils/docker/apache-vhost /etc/apache2/sites-enabled/000-default
 
-# Set the root passwd
-RUN echo 'root:root' | chpasswd
-
 # Expose ssh and http ports
 EXPOSE 80
-EXPOSE 22
 
 CMD "/tmp/start.sh"
