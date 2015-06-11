@@ -27,9 +27,9 @@ mysql --user=zm --password=zm --database=zm --execute='select * from Config limi
 ( mysql -u root < db/zm_create.sql && \
 mysql -u root -e "grant insert,select,update,delete,lock tables,alter on zm.* to 'zm'@'localhost' identified by 'zm'" )
 
-# Restart apache
-service apache2 restart
-
 # Start ZoneMinder
 /usr/local/bin/zmpkg.pl start
+
+# Start apache
+/usr/sbin/apache2ctl -D FOREGROUND
 
