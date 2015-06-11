@@ -21,11 +21,11 @@ while true; do
   fi
 done
 
-# Create the ZoneMinder database
-mysql -u root < db/zm_create.sql
-
-# Add the ZoneMinder DB user
-mysql -u root -e "grant insert,select,update,delete,lock tables,alter on zm.* to 'zm'@'localhost' identified by 'zm'"
+# If the ZoneMinder does not exist,
+# Create the ZoneMinder database and add the ZoneMinder DB user
+mysql --user=zm --password=zm --database=zm --execute='select * from Config limit 1;' || \
+( mysql -u root < db/zm_create.sql && \
+mysql -u root -e "grant insert,select,update,delete,lock tables,alter on zm.* to 'zm'@'localhost' identified by 'zm'" )
 
 # Restart apache
 service apache2 restart
